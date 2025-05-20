@@ -29,17 +29,10 @@
 
 ################################################################################
 
-# install.packages("stringr")
-library(stringr)
-
 atbashCipher <- function(text, n, Cipher){
-    plain <- c("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p",
-                "q","r","s","t","u","v","w","x","y","z")
-
     #removing spaces
-    text <- stringr::str_replace_all(text, "\\s+", "")
+    text <- gsub(" ", "", text)
 
-    # transforming in lowercase
     text <- tolower(text)
 
     #removing accent
@@ -47,24 +40,23 @@ atbashCipher <- function(text, n, Cipher){
 
     # removing punctuation
     punctuation <- "[[:punct:]]"
-    text <- stringr::str_remove_all(text, punctuation)
+    text <- gsub(punctuation, "", text)
 
-    # substitution cipher
-    finalText <- ""
+    substitutionCipher <- ""
     for(i in 1:nchar(text)){
-        aux <- match(substr(text, i, i), plain)
-        finalText <- paste(finalText,Cipher[aux])
+        aux <- match(substr(text, i, i), letters) #letters is alphabet in vector
+        substitutionCipher <- paste0(substitutionCipher, Cipher[aux])
+        # substitutionCipher <- paste(substitutionCipher, Cipher[aux], sep="")
     }
-    finalText <- stringr::str_replace_all(finalText, "\\s+", "")
 
     # group size being n letters
-    sequential <- seq(1,nchar(finalText),n)
+    sequential <- seq(1, nchar(substitutionCipher), n)
     result <- ""
     for(i in 1:length(sequential)){
         result <- paste(
-                    result,
-                    substring(finalText, sequential[i], sequential[i]+n-1)
-                )
+            result,
+            substring(substitutionCipher, sequential[i], sequential[i] + n - 1)
+        )
     }
 
     return(result)
