@@ -62,8 +62,7 @@ atbashCipher <- function(text, n, Cipher){
     return(result)
 }
 
-Cipher <- c("z","y","x","w","v","u","t","s","r","q","p","o","n","m","l","k","j",
-            "i","h","g","f","e","d","c","b","a")
+Cipher <- rev(letters)
 
 print(atbashCipher("Amanda, Thiago e Luísa.", 5, Cipher))
 
