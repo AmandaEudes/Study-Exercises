@@ -19,3 +19,16 @@ build-backend = "poetry.core.masonry.api"
 pytest = "^8.3.5"
 radon = "5.1"
 
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib", "-ra", "-q", "-p", "profiling"]
+pythonpath = "./src"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+mypy_path = ["src"]
