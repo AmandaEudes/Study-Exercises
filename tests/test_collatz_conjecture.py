@@ -1,3 +1,4 @@
+from pytest import raises
 from study_exercises.collatz_conjecture import collatz_steps
 
 
@@ -7,3 +8,22 @@ def test_one() -> None:
 
 def test_two() -> None:
     assert 0 == collatz_steps(1)
+
+
+def test_three() -> None:
+    with raises(ValueError, match="Only positive integers are allowed"):
+        collatz_steps(-1)
+
+
+def test_four() -> None:
+    with raises(ValueError, match="Only positive integers are allowed"):
+        collatz_steps(12.1)
+
+
+def test_five() -> None:
+    with raises(ValueError, match="Only positive integers are allowed"):
+        collatz_steps(0)
+
+
+def test_six() -> None:
+    assert 152 == collatz_steps(1000000)
