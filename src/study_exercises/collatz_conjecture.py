@@ -53,26 +53,24 @@
 
 # https://exercism.org/tracks/python/exercises/collatz-conjecture
 
-def collatz_steps(n):
-    if n <= 0:
-        raise ValueError("Only positive integers are allowed")
 
-    if not isinstance(n, int):
+def collatz_steps(initial: int) -> int:
+    """Calculates Collatz steps
+
+    Args:
+        initial (int): value
+
+    Raises:
+        ValueError: Case initial is not a integer
+
+    Returns:
+        int: the number of Collatz steps
+    """
+    if not isinstance(initial, int) or initial <= 0:
         raise ValueError("Only positive integers are allowed")
 
     steps = 0
-    while n != 1:
-        if n % 2 == 0:
-            n //= 2
-        else:
-            n = 3 * n + 1
+    while initial != 1:
+        initial = initial // 2 if initial % 2 == 0 else 3 * initial + 1
         steps += 1
     return steps
-
-# Applying the function:
-try:
-    number = 12569874561561054145640154151054105410540450
-    result = collatz_steps(number)
-    print(f"Número de passos para {number} chegar a 1: {result}")
-except ValueError as e:
-    print(f"Erro: {e}")
