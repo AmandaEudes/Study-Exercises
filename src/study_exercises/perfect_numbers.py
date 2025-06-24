@@ -44,7 +44,3 @@ def classify_number(n: int) -> str:
         return "Abundant"
 
     return "Deficient"
-
-number = 8
-classification = classify_number(number)
-print(f"The number {number} is {classification}.")
