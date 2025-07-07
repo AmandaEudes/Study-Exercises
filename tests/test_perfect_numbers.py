@@ -1,4 +1,3 @@
-from pytest import raises
 from study_exercises.perfect_numbers import classify_number
 
 
